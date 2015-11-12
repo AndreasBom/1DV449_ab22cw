@@ -16,9 +16,9 @@ namespace scraper.Models
         }
 
         public Fetcher()
-        {
+            {
             
-        }
+            }
 
 
         public IEnumerable<String> GetListOfLinks()

@@ -9,26 +9,28 @@ namespace scraper.Models
 {
     public class Movie
     {
+        private string _day;
         public string Name { get; set; }
 
-        public Dictionary<string, bool> Availability { get; set; }
-
-        public Movie()
+        public string Day
         {
-            Availability = new Dictionary<string, bool>();
-        }
-
-        public void SetAvailibility(string day, string available)
-        {
-
-            if (available.ToLower().Contains("Platser kvar"))
+            get
             {
-                Availability.Add(day, true);
+                switch (_day.ToLower())
+                {
+                    case "friday":
+                        return "Fredag";
+                    case "saturday":
+                        return "Lördag";
+                    case "sunday":
+                        return "Söndag";
+                }
+                return null;
             }
-            else
-            {
-                Availability.Add(day, false);
-            }
+            set { _day = value; }
         }
+        
+        public string Time { get; set; }
+
     }
 }

@@ -15,6 +15,7 @@ namespace scraper.Models
     public class MovieFetcher : Fetcher
     {
         private readonly string _urlToMovie;
+        private Dictionary<string, string> _movieNameAndCode;
 
         public MovieFetcher(ScrapeAgent scrape)
         {
@@ -33,14 +34,31 @@ namespace scraper.Models
 
         //Gets a list of movies that takes available calendar days in to account
         //Checks on cinema site witch days that has movies
-        public IEnumerable<JToken> GetListOfMovies(IEnumerable<string> desiredDays)
+        public IEnumerable<Movie> GetListOfMovies(IEnumerable<string> desiredDays)
         {
             
             //Find days on /cinema
             var daysWhenMoviesIsOn = ScrapeForMovieDays();
             //Dictionary(<string><sting>) crosscheck Days that match desired days and days that match movie found on /cinema
             var possibleDays = CheckForMatchingDays(desiredDays, daysWhenMoviesIsOn);
-            
+
+            //Fetch movies (gets back as IEnumerable<JToken>)
+            var jsonMovies = FetchMovies(possibleDays, desiredDays);
+
+            //Adds jsonMovies to class Movie
+            var movies = from jmovie in jsonMovies
+                select new Movie
+                {
+                    Name = (string) _movieNameAndCode[(string)jmovie["movie"]],
+                    Day = (string) jmovie["day"],
+                    Time = (string) jmovie["time"]
+                };
+
+            return movies;
+        }
+
+        private IEnumerable<JToken> FetchMovies(Dictionary<string, string> possibleDays, IEnumerable<string> desiredDays)
+        {
             //Find movies on /cinema
             var movies = ScrapeForMovies();
 
@@ -61,10 +79,9 @@ namespace scraper.Models
                 }
             }
 
+            //Include only movies that has free seats 
             var availableMovies = SortOutAvailableMovies(requestResult);
-
             return availableMovies;
-
         }
 
         private List<JToken> SortOutAvailableMovies(List<JArray> listOfMovies)
@@ -115,6 +132,8 @@ namespace scraper.Models
             var tag = _scrapeAgent.GetAllTags(_urlToMovie, "//select[@name='movie']/option");
             //extract days and 'code' for day from tag
             var movies = GetMovieDaysFromTags(tag);
+
+            _movieNameAndCode = movies;
 
             return movies;
         }
