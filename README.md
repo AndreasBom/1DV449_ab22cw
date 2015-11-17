@@ -13,6 +13,9 @@ De allmängilltiga reglerna skulle kunna sammanfattas:
 *Stör/manipulera inte med den normala driften av värddatorn/servern.   
    
 ###Begränsningar i din lösning- vad är generellt och vad är inte generellt i din kod?   
-
+Min lösning har en class (ScrapeAgent) som har flera metoder för att skrapa en angiven url. Parametrarna som metoderna tar in bestämmer vilka taggar eller atribute som skrapan ska leta efter. Lösningen använder sig av mönsterdesignen facade, vilket gör det enkelt att implementera fler "underklasser" (fler än /calendar, /dinner, /cinema) som kopplas samman.
+När jag skrapar efter en specifik länk (tex /calendar) så använder jag mig av funktionen .Contains("calendar"). Detta anser jag är mer generellt, än att använda ett specificerat index i en lista (links[1]).
+Varje sida som sedan skrapas på information utgörs av en egen klass. Dessa är hårt knutna till hur websidan som ska skrapas, är uppbyggd. Exempelvis så används olika taggar för att hitta rätt data.
 
 ###Vad kan robots.txt spela för roll?
+I denna filen kan sidägaren lägga till hur man önskar att en skrapa ska agera. Det kan tex vara att man tillåter skrapor på hela sida, eller enbart på vissa sidor. Man kan tillåta specifika skrapor, men inte andra (tex googlebot). 
