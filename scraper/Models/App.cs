@@ -44,7 +44,7 @@ namespace scraper.Models
         }
 
         
-        public bool IsDinnerTimeAvailable(IEnumerable<Movie> listOfAvailableMovies)
+        public IEnumerable<Dinner> IsDinnerTimeAvailable(IEnumerable<Movie> listOfAvailableMovies)
         {
             
             return _resturangFetcher.CheckForAvailableDinnerTime(listOfAvailableMovies);

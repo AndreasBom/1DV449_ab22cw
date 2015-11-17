@@ -45,13 +45,12 @@ namespace scraper.Views
             {
                 var app = new App(Session["url"].ToString());
                 var availableDinnerTime = app.IsDinnerTimeAvailable(ListOfMovies);
-                if (availableDinnerTime)
+                if (availableDinnerTime.Any())
                 {
-                    var timeString = Regex.Match(Request.QueryString["time"], "\\d\\d").Value;
-                    var time = Convert.ToInt32(timeString)+2;
-                    Session["time"] = time;
-                    Session["day"] = Request.QueryString["day"];
+                    //Movie name
                     Session["name"] = Request.QueryString["name"];
+                    //List of Dinner objects
+                    Session["dinner"] = availableDinnerTime;
                     Response.Redirect("ResultAvailable.aspx");
                 }
                 else

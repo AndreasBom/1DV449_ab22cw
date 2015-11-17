@@ -48,7 +48,7 @@ namespace scraper.Models
         }
 
 
-        public bool CheckForAvailableDinnerTime(IEnumerable<Movie> listOfAvailableMovies)
+        public IEnumerable<Dinner> CheckForAvailableDinnerTime(IEnumerable<Movie> listOfAvailableMovies)
         {
             //CROSS CHECK MOVIE AND DINNER
             var availability = ScrapeForAvailableDinnerTime().ToList();
@@ -56,6 +56,7 @@ namespace scraper.Models
                 where m.Name == _movieName
                 select m.Name).FirstOrDefault();
 
+            var list = new List<Dinner>();
             //Check all times when resturant is available after movie (movies are not longer than 2 hours).
             foreach (var dinnerTime in availability)
             {
@@ -65,12 +66,12 @@ namespace scraper.Models
                     if (dinnerTime.Time != _movieTime &&
                         _movieTime + 2  <= dinnerTime.Time)
                     {
-                        return true;
+                        list.Add(dinnerTime);
                     }
                 }
             }
 
-            return false;
+            return list;
         }
 
 
