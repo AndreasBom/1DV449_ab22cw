@@ -12,6 +12,7 @@ using System.Web;
 
 namespace scraper.Models
 {
+   
     public class ResturangFetcher : Fetcher
     {
         private string _movieDay;

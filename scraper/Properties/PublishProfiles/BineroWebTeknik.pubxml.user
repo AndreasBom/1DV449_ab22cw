@@ -11,10 +11,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>11/13/2015 14:09:35</publishTime>
+      <publishTime>11/17/2015 18:38:34</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>11/13/2015 14:09:35</publishTime>
+      <publishTime>11/17/2015 18:38:34</publishTime>
     </File>
     <File Include="bin/HtmlAgilityPack.dll">
       <publishTime>11/05/2015 17:25:25</publishTime>
@@ -62,7 +62,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/05/2015 16:57:11</publishTime>
     </File>
     <File Include="bin/scraper.dll">
-      <publishTime>11/13/2015 14:06:22</publishTime>
+      <publishTime>11/17/2015 18:38:30</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>05/07/2013 14:09:16</publishTime>
@@ -77,10 +77,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/13/2015 10:15:45</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>11/13/2015 14:09:33</publishTime>
+      <publishTime>11/17/2015 18:38:32</publishTime>
     </File>
     <File Include="Views/Default.aspx">
-      <publishTime>11/13/2015 08:49:18</publishTime>
+      <publishTime>11/17/2015 18:13:18</publishTime>
     </File>
     <File Include="Views/ResultAvailable.aspx">
       <publishTime>11/13/2015 09:00:29</publishTime>

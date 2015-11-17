@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace scraper.Models
 {
+    
     public class App
     {
         private readonly CalendarFetcher _calendarFetcher;

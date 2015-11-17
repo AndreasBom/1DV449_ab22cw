@@ -7,6 +7,7 @@ using System.Web;
 
 namespace scraper.Models
 {
+    [Serializable]
     public class Movie
     {
         private string _day;

@@ -11,7 +11,7 @@ namespace scraper.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var dinner = Session["dinner"];
+            var dinner = Cache["dinner"];
             RepeaterDinner.DataSource = dinner;
             RepeaterDinner.DataBind();
 

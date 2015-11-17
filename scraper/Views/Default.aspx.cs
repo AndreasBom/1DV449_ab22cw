@@ -12,14 +12,25 @@ namespace scraper.Views
     {
 
         private IEnumerable<string> _desiredDays;
+        
 
         private IEnumerable<Movie> ListOfMovies
         {
             get
             {
-                return
-                    (IEnumerable<Movie>)
-                        (Session["listOfMovies"] ?? (Session["listOfMovies"] = new App(Session["url"].ToString()).GetListOfMovies(_desiredDays)));
+                if (Cache["listOfMovies"] == null)
+                {
+                    var app = new App(Session["url"].ToString());
+                    var listOfMovies = app.GetListOfMovies(_desiredDays);
+                    
+                    
+                    Cache["listOfMovies"] = listOfMovies;
+                    return listOfMovies;
+                }
+                //return
+                //    (IEnumerable<Movie>)
+                //        (Session["listOfMovies"] ?? (Session["listOfMovies"] = new App(Session["url"].ToString()).GetListOfMovies(_desiredDays)));
+                return (IEnumerable<Movie>) Cache["listOfMovies"];
             }
         }
 
@@ -50,7 +61,7 @@ namespace scraper.Views
                     //Movie name
                     Session["name"] = Request.QueryString["name"];
                     //List of Dinner objects
-                    Session["dinner"] = availableDinnerTime;
+                    Cache["dinner"] = availableDinnerTime;
                     Response.Redirect("ResultAvailable.aspx");
                 }
                 else

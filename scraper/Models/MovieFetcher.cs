@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using Newtonsoft.Json.Linq;
 
 namespace scraper.Models
 {
+ 
+    [Serializable]
     public class MovieFetcher : Fetcher
     {
         private readonly string _urlToMovie;
@@ -54,6 +57,7 @@ namespace scraper.Models
                     Time = (string) jmovie["time"]
                 };
 
+            
             return movies;
         }
 

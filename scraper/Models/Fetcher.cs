@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace scraper.Models
 {
+   
     public class Fetcher
     {
         protected ScrapeAgent _scrapeAgent;

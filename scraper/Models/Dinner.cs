@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace scraper.Models
 {
+    
     public class Dinner
     {
         public string Day { get; set; }

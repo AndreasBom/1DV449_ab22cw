@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace scraper.Models
 {
+   
     public class CalendarFetcher : Fetcher
     {
         public CalendarFetcher(ScrapeAgent scrape)
