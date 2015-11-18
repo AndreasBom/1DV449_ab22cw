@@ -15,6 +15,7 @@ namespace scraper.Models
         public ScrapeAgent(string baseUrl)
         {
             _baseUrl = baseUrl;
+            _htmlWeb.UserAgent = "andreas.bom@gmail.com";
         }
 
         public HtmlNodeCollection Scrape(string htmlDocument, string xPathTag)
